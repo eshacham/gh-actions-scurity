@@ -9,6 +9,9 @@ jobs:
     steps:
       - name: Assign label
         env:
+          # if the title's value is a"; echo got your secrets"
+          # and the local title value is set in the shell command (and not as an env var)
+          # the she command will execute potentialy malicous code
           TITLE: ${{ github.event.issue.title }}
         run: |
           if [[ "$TITLE" == *"bug"* ]]; then
